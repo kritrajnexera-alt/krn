@@ -66,13 +66,26 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             {links.map((link) => {
               const isActive = pathname === link.href;
-              return (
+              const isHome = link.href === "/";
+              const sharedClass = `relative font-body text-sm font-medium tracking-wide transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded ${
+                isActive ? "text-nexera-cyan" : "text-gray-600 hover:text-gray-900"
+              }`;
+              return isHome ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={sharedClass}
+                >
+                  {link.label}
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-nexera-cyan rounded-full nav-underline-in" />
+                  )}
+                </a>
+              ) : (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative font-body text-sm font-medium tracking-wide transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded ${
-                    isActive ? "text-nexera-cyan" : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className={sharedClass}
                 >
                   {link.label}
                   {isActive && (
@@ -128,24 +141,38 @@ export default function Navbar() {
             aria-modal="true"
             aria-label="Mobile navigation menu"
           >
-            {links.map((link, i) => (
-              <motion.div
-                key={link.href}
-                initial={{ opacity: 0, y: 32, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: 32, filter: "blur(8px)" }}
-                transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <Link
-                  href={link.href}
-                  className={`font-display text-3xl font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-4 focus-visible:ring-offset-white rounded ${
-                    pathname === link.href ? "text-nexera-cyan" : "text-gray-700 hover:text-gray-900"
-                  } transition-colors`}
+            {links.map((link, i) => {
+              const isHome = link.href === "/";
+              return (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, y: 32, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: 32, filter: "blur(8px)" }}
+                  transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {link.label}
-                </Link>
-              </motion.div>
-            ))}
+                  {isHome ? (
+                    <a
+                      href={link.href}
+                      className={`font-display text-3xl font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-4 focus-visible:ring-offset-white rounded ${
+                        pathname === link.href ? "text-nexera-cyan" : "text-gray-700 hover:text-gray-900"
+                      } transition-colors`}
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className={`font-display text-3xl font-bold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-4 focus-visible:ring-offset-white rounded ${
+                        pathname === link.href ? "text-nexera-cyan" : "text-gray-700 hover:text-gray-900"
+                      } transition-colors`}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </motion.div>
+              );
+            })}
             <motion.div
               initial={{ opacity: 0, y: 32, filter: "blur(8px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
