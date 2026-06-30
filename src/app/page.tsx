@@ -205,19 +205,6 @@ export default function Home() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-16 w-full">
           <div className="max-w-4xl">
-            {/* Top badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-nexera-cyan/15 bg-nexera-cyan/5 mb-8"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-nexera-cyan animate-pulse" aria-hidden="true" />
-              <span className="font-mono text-[10px] tracking-widest text-nexera-cyan/70 uppercase">
-                Now serving 5+ cities across India
-              </span>
-            </motion.div>
-
             <div id="hero-heading">
               <WordReveal words={headline} />
             </div>
@@ -237,42 +224,20 @@ export default function Home() {
               transition={{ delay: 0.9, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="mt-10 flex flex-col sm:flex-row gap-4 items-center"
             >
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Link
-                  href="/contact"
-                  className="group px-7 py-3.5 rounded-full bg-nexera-violet text-cool-white font-semibold text-sm tracking-wide hover:bg-nexera-violet/80 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink-space hover:shadow-[0_0_30px_rgba(91,47,212,0.3)] flex items-center gap-2"
-                >
-                  Book a free call
-                  <motion.span
-                    className="inline-block"
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 4 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                    aria-hidden="true"
-                  >
-                    →
-                  </motion.span>
-                </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Link
-                  href="/services"
-                  className="group px-7 py-3.5 rounded-full border border-nexera-cyan/50 text-nexera-cyan font-semibold text-sm tracking-wide hover:bg-nexera-cyan/10 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink-space flex items-center gap-2"
-                >
-                  View services
-                </Link>
-              </motion.div>
+              <Link
+                href="/contact"
+                className="px-7 py-3.5 rounded-full bg-nexera-violet text-cool-white font-semibold text-sm tracking-wide hover:bg-nexera-violet/80 hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink-space hover:shadow-[0_0_30px_rgba(91,47,212,0.3)] flex items-center gap-2"
+              >
+                Book a free call
+                <span className="inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </Link>
+              <Link
+                href="/services"
+                className="px-7 py-3.5 rounded-full border border-nexera-cyan/50 text-nexera-cyan font-semibold text-sm tracking-wide hover:bg-nexera-cyan/10 hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink-space flex items-center gap-2"
+              >
+                View services
+              </Link>
             </motion.div>
-
-            {/* Trust line */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 font-body text-xs text-cool-white/30 tracking-wide"
-            >
-              Serving Ankleshwar · Bareilly · Puranpur · Pilibhit · Moradabad
-            </motion.p>
           </div>
         </div>
 
@@ -333,23 +298,13 @@ export default function Home() {
 
           <ScrollReveal delay={0.4}>
             <div className="mt-14 text-center">
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Link
-                  href="/services"
-                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-full border border-nexera-violet/30 text-cool-white/80 font-semibold text-sm tracking-wide hover:bg-nexera-violet/10 hover:border-nexera-violet/50 hover:text-cool-white transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink-space"
-                >
-                  View all services
-                  <motion.span
-                    className="inline-block"
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 4 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                    aria-hidden="true"
-                  >
-                    →
-                  </motion.span>
-                </Link>
-              </motion.div>
+              <Link
+                href="/services"
+                className="group inline-flex items-center gap-2 px-6 py-3 rounded-full border border-nexera-violet/30 text-cool-white/80 font-semibold text-sm tracking-wide hover:bg-nexera-violet/10 hover:border-nexera-violet/50 hover:text-cool-white hover:scale-[1.03] active:scale-[0.97] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink-space"
+              >
+                View all services
+                <span className="inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </Link>
             </div>
           </ScrollReveal>
         </div>
@@ -417,26 +372,13 @@ export default function Home() {
               Let&apos;s talk. Free consultation, no pressure.
             </p>
             <div className="mt-10">
-              <motion.div
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-nexera-violet text-cool-white font-semibold text-sm tracking-wide hover:bg-nexera-violet/80 hover:scale-[1.04] active:scale-[0.96] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink-space hover:shadow-[0_0_40px_rgba(91,47,212,0.4)]"
               >
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-nexera-violet text-cool-white font-semibold text-sm tracking-wide hover:bg-nexera-violet/80 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink-space hover:shadow-[0_0_40px_rgba(91,47,212,0.4)]"
-                >
-                  Start a project
-                  <motion.span
-                    className="inline-block"
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 4 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                    aria-hidden="true"
-                  >
-                    →
-                  </motion.span>
-                </Link>
-              </motion.div>
+                Start a project
+                <span className="inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </Link>
             </div>
           </ScrollReveal>
         </div>
