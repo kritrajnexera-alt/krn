@@ -2,103 +2,30 @@
 
 import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
+import { SiNextdotjs, SiTailwindcss, SiFramer, SiTypescript, SiSupabase, SiVercel, SiAnthropic, SiN8N } from "react-icons/si";
 
 const stackCategories = [
   {
     name: "Frontend & Design",
     tools: [
-      {
-        name: "Next.js",
-        icon: (
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-          </svg>
-        ),
-        label: "React framework",
-      },
-      {
-        name: "Tailwind CSS",
-        icon: (
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M12 3c-3 0-4.5 1.5-5 3 1-1 2.5-1.5 4-1 1.5.5 2.5 2 3.5 2.5 1.5.5 3 0 4-1-1 2-3 3.5-5 3.5-2 0-3.5-1.5-5-2 1 1 2 2.5 4 3 2 .5 4 0 5-1-1 2-3 3-5 3" />
-          </svg>
-        ),
-        label: "Utility-first CSS",
-      },
-      {
-        name: "Framer Motion",
-        icon: (
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <polygon points="12 2 22 12 12 22 2 12" />
-          </svg>
-        ),
-        label: "Animation library",
-      },
-      {
-        name: "TypeScript",
-        icon: (
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M14 17a2 2 0 0 0 2-2v-2a1 1 0 0 0-1-1h-2a1 1 0 0 1-1-1V9a2 2 0 0 1 2-2M9 7v10" />
-          </svg>
-        ),
-        label: "Type-safe JS",
-      },
+      { name: "Next.js", icon: <SiNextdotjs size={20} />, label: "React framework" },
+      { name: "Tailwind CSS", icon: <SiTailwindcss size={20} />, label: "Utility-first CSS" },
+      { name: "Framer Motion", icon: <SiFramer size={20} />, label: "Animation library" },
+      { name: "TypeScript", icon: <SiTypescript size={20} />, label: "Type-safe JS" },
     ],
   },
   {
     name: "Cloud Infrastructure",
     tools: [
-      {
-        name: "Supabase",
-        icon: (
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M4 15c1 2 3 3 5 3s4-1 5-3M4 9c1-2 3-3 5-3s4 1 5 3" />
-            <path d="M4 9v6c0 2 1 4 3 5" />
-            <path d="M14 9v6c0 2-1 4-3 5" />
-            <path d="M4 12h10" />
-          </svg>
-        ),
-        label: "Open source backend",
-      },
-      {
-        name: "Vercel",
-        icon: (
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-            <polygon points="12 2 22 22 2 22" />
-          </svg>
-        ),
-        label: "Deployment platform",
-      },
+      { name: "Supabase", icon: <SiSupabase size={20} />, label: "Open source backend" },
+      { name: "Vercel", icon: <SiVercel size={20} />, label: "Deployment platform" },
     ],
   },
   {
     name: "AI & Automation",
     tools: [
-      {
-        name: "Claude AI",
-        icon: (
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10" />
-            <path d="M12 6v12M6 12h12" />
-          </svg>
-        ),
-        label: "AI assistant",
-      },
-      {
-        name: "n8n",
-        icon: (
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <circle cx="8" cy="6" r="2" />
-            <circle cx="8" cy="18" r="2" />
-            <circle cx="18" cy="12" r="2" />
-            <path d="M8 8v8" />
-            <path d="M10 7l6 4" />
-            <path d="M10 17l6-4" />
-          </svg>
-        ),
-        label: "Workflow automation",
-      },
+      { name: "Claude AI", icon: <SiAnthropic size={20} />, label: "AI assistant" },
+      { name: "n8n", icon: <SiN8N size={20} />, label: "Workflow automation" },
     ],
   },
 ];
