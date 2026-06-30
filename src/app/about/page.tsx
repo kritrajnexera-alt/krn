@@ -1,16 +1,106 @@
 "use client";
 
+import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
 
-const techStack = [
-  { name: "Next.js", desc: "React framework for production", color: "text-cool-white" },
-  { name: "Tailwind CSS", desc: "Utility-first styling", color: "text-nexera-cyan" },
-  { name: "Framer Motion", desc: "Animation library", color: "text-cool-white" },
-  { name: "n8n", desc: "Workflow automation", color: "text-nexera-violet" },
-  { name: "Claude AI", desc: "AI assistant integration", color: "text-nexera-cyan" },
-  { name: "Supabase", desc: "Open source backend", color: "text-cool-white" },
-  { name: "Vercel", desc: "Deployment platform", color: "text-cool-white" },
-  { name: "TypeScript", desc: "Type-safe JavaScript", color: "text-nexera-cyan" },
+const stackCategories = [
+  {
+    name: "Frontend & Design",
+    tools: [
+      {
+        name: "Next.js",
+        icon: (
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        ),
+        label: "React framework",
+      },
+      {
+        name: "Tailwind CSS",
+        icon: (
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M12 3c-3 0-4.5 1.5-5 3 1-1 2.5-1.5 4-1 1.5.5 2.5 2 3.5 2.5 1.5.5 3 0 4-1-1 2-3 3.5-5 3.5-2 0-3.5-1.5-5-2 1 1 2 2.5 4 3 2 .5 4 0 5-1-1 2-3 3-5 3" />
+          </svg>
+        ),
+        label: "Utility-first CSS",
+      },
+      {
+        name: "Framer Motion",
+        icon: (
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polygon points="12 2 22 12 12 22 2 12" />
+          </svg>
+        ),
+        label: "Animation library",
+      },
+      {
+        name: "TypeScript",
+        icon: (
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M14 17a2 2 0 0 0 2-2v-2a1 1 0 0 0-1-1h-2a1 1 0 0 1-1-1V9a2 2 0 0 1 2-2M9 7v10" />
+          </svg>
+        ),
+        label: "Type-safe JS",
+      },
+    ],
+  },
+  {
+    name: "Cloud Infrastructure",
+    tools: [
+      {
+        name: "Supabase",
+        icon: (
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M4 15c1 2 3 3 5 3s4-1 5-3M4 9c1-2 3-3 5-3s4 1 5 3" />
+            <path d="M4 9v6c0 2 1 4 3 5" />
+            <path d="M14 9v6c0 2-1 4-3 5" />
+            <path d="M4 12h10" />
+          </svg>
+        ),
+        label: "Open source backend",
+      },
+      {
+        name: "Vercel",
+        icon: (
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+            <polygon points="12 2 22 22 2 22" />
+          </svg>
+        ),
+        label: "Deployment platform",
+      },
+    ],
+  },
+  {
+    name: "AI & Automation",
+    tools: [
+      {
+        name: "Claude AI",
+        icon: (
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v12M6 12h12" />
+          </svg>
+        ),
+        label: "AI assistant",
+      },
+      {
+        name: "n8n",
+        icon: (
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="8" cy="6" r="2" />
+            <circle cx="8" cy="18" r="2" />
+            <circle cx="18" cy="12" r="2" />
+            <path d="M8 8v8" />
+            <path d="M10 7l6 4" />
+            <path d="M10 17l6-4" />
+          </svg>
+        ),
+        label: "Workflow automation",
+      },
+    ],
+  },
 ];
 
 export default function About() {
@@ -90,40 +180,56 @@ export default function About() {
         </div>
       </section>
 
-      {/* ─── TECH STACK ─── */}
-      <section aria-labelledby="tech-heading" className="relative py-24 md:py-32 bg-gradient-to-br from-nexera-violet/5 via-transparent to-nexera-cyan/5 overflow-hidden">
+      {/* ─── OUR STACK ─── */}
+      <section aria-labelledby="stack-heading" className="relative py-24 md:py-32 overflow-hidden">
+        <div className="dot-grid absolute inset-0 pointer-events-none opacity-50" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <ScrollReveal>
-            <h2 id="tech-heading" className="font-display font-bold text-[clamp(1.8rem,4vw,3rem)] text-cool-white leading-tight text-balance">
+            <h2 id="stack-heading" className="font-display font-bold text-[clamp(1.8rem,4vw,3rem)] text-cool-white leading-tight text-balance">
               Our Stack
             </h2>
             <p className="mt-4 text-cool-white/50 font-body text-sm max-w-lg leading-relaxed text-pretty">
-              Modern tools. Cutting-edge AI. Everything we use is chosen for speed, quality, and scalability.
+              Built with tools trusted by the world&apos;s best product teams.
             </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {techStack.slice(0, 4).map((tech, i) => (
-              <ScrollReveal key={tech.name} delay={i * 0.06}>
-                <div className="group p-5 rounded-xl bg-card-bg border border-nexera-violet/10 hover:border-nexera-cyan/30 transition-[border-color] duration-500 text-center">
-                  <h3 className={`font-display font-bold text-sm md:text-base ${tech.color} group-hover:text-nexera-cyan transition-colors duration-300`}>
-                    {tech.name}
-                  </h3>
-                  <p className="mt-1.5 font-body text-[11px] text-cool-white/40">{tech.desc}</p>
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 lg:gap-14">
+            {stackCategories.map((category, ci) => (
+              <motion.div
+                key={category.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: ci * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <span className="font-mono text-[11px] tracking-widest text-cool-white/40 uppercase block mb-6">
+                  {category.name}
+                </span>
+                <div className="space-y-4">
+                  {category.tools.map((tool, ti) => (
+                    <motion.div
+                      key={tool.name}
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{ duration: 0.4, delay: ci * 0.12 + ti * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                      className="group flex items-center gap-3 p-3 -mx-3 rounded-xl hover:bg-card-bg/60 hover:shadow-[0_0_30px_rgba(91,47,212,0.08)] hover:scale-[1.03] transition-all duration-300 ease-out-soft cursor-default"
+                    >
+                      <span className="w-10 h-10 rounded-lg bg-surface-mid border border-nexera-violet/10 flex items-center justify-center text-cool-white/60 group-hover:text-nexera-cyan transition-colors duration-300 flex-shrink-0">
+                        {tool.icon}
+                      </span>
+                      <div className="min-w-0">
+                        <span className="font-display font-semibold text-sm text-cool-white group-hover:text-nexera-cyan transition-colors duration-300 block leading-tight">
+                          {tool.name}
+                        </span>
+                        <span className="font-body text-[12px] text-cool-white/40 leading-tight">
+                          {tool.label}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              </ScrollReveal>
-            ))}
-          </div>
-          <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {techStack.slice(4).map((tech, i) => (
-              <ScrollReveal key={tech.name} delay={i * 0.06}>
-                <div className="group p-5 rounded-xl bg-surface-mid border border-nexera-violet/10 hover:border-nexera-cyan/30 transition-[border-color] duration-500 text-center">
-                  <h3 className={`font-display font-bold text-sm md:text-base ${tech.color} group-hover:text-nexera-cyan transition-colors duration-300`}>
-                    {tech.name}
-                  </h3>
-                  <p className="mt-1.5 font-body text-[11px] text-cool-white/40">{tech.desc}</p>
-                </div>
-              </ScrollReveal>
+              </motion.div>
             ))}
           </div>
         </div>
