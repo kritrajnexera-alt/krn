@@ -15,8 +15,8 @@ export default function ScrollReveal({ children, delay = 0, className }: ScrollR
   return (
     <div ref={ref} className={className}>
       <motion.div
-        initial={{ opacity: 0, y: 40, filter: "blur(4px)" }}
-        animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+        initial={{ opacity: 0, y: 40 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ delay, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
         {children}

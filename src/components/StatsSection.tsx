@@ -13,7 +13,7 @@ function CountUp({ from, to, inView }: { from: number; to: number; inView: boole
     started.current = true;
 
     const duration = 1500;
-    const steps = 30;
+    const steps = 20;
     const increment = (to - from) / steps;
     let current = from;
     let step = 0;
