@@ -22,6 +22,15 @@ function WordReveal({ words }: { words: string[] }) {
               className={`inline-block mr-[0.15em] ${isLast ? "text-nexera-cyan" : ""}`}
             >
               {word}
+              {isLast && (
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.9, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  className="inline-block ml-2 w-2 h-2 rounded-full bg-nexera-cyan align-middle"
+                  aria-hidden="true"
+                />
+              )}
             </motion.span>
           );
         })}
@@ -161,8 +170,54 @@ export default function Home() {
       <section aria-labelledby="hero-heading" className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden">
         <div className="dot-grid absolute inset-0 pointer-events-none" aria-hidden="true" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-12 text-center md:text-left w-full">
+        {/* Geometric accent: large wireframe cube on the right */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none hidden lg:block" aria-hidden="true">
+          <svg viewBox="0 0 500 500" fill="none" className="w-full h-full opacity-[0.04] mix-blend-screen">
+            <rect x="50" y="50" width="400" height="400" rx="20" stroke="url(#cube-grad)" strokeWidth="0.5" />
+            <rect x="100" y="100" width="400" height="400" rx="20" stroke="url(#cube-grad)" strokeWidth="0.5" />
+            <line x1="50" y1="50" x2="100" y2="100" stroke="url(#cube-grad)" strokeWidth="0.5" />
+            <line x1="450" y1="50" x2="500" y2="100" stroke="url(#cube-grad)" strokeWidth="0.5" />
+            <line x1="50" y1="450" x2="100" y2="500" stroke="url(#cube-grad)" strokeWidth="0.5" />
+            <line x1="450" y1="450" x2="500" y2="500" stroke="url(#cube-grad)" strokeWidth="0.5" />
+            <defs>
+              <linearGradient id="cube-grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#5B2FD4" />
+                <stop offset="50%" stopColor="#00C8E0" />
+                <stop offset="100%" stopColor="#5B2FD4" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        {/* Small terminal accent */}
+        <motion.div
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute top-28 left-6 md:left-12 hidden md:flex items-center gap-2 font-mono text-[11px] text-cool-white/20 pointer-events-none"
+          aria-hidden="true"
+        >
+          <span className="w-2 h-2 rounded-full bg-nexera-cyan/40" />
+          <span className="tracking-wider">~/studio</span>
+          <span className="text-nexera-violet/40">$</span>
+          <span className="text-cool-white/10">build --next</span>
+        </motion.div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-16 w-full">
           <div className="max-w-4xl">
+            {/* Top badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-nexera-cyan/15 bg-nexera-cyan/5 mb-8"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-nexera-cyan animate-pulse" aria-hidden="true" />
+              <span className="font-mono text-[10px] tracking-widest text-nexera-cyan/70 uppercase">
+                Now serving 5+ cities across India
+              </span>
+            </motion.div>
+
             <div id="hero-heading">
               <WordReveal words={headline} />
             </div>
@@ -170,9 +225,10 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 text-lg md:text-xl text-cool-white/60 font-body max-w-xl leading-relaxed text-pretty"
+              className="mt-6 text-lg md:text-xl text-cool-white/60 font-body max-w-2xl leading-relaxed text-pretty"
             >
-              Websites & automation — for businesses ready to grow.
+              Premium websites, smart automation &amp; AI-powered tools — 
+              built for Indian businesses ready to grow beyond templates.
             </motion.p>
 
             <motion.div
@@ -200,13 +256,23 @@ export default function Home() {
               </motion.div>
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                 <Link
-                  href="/contact"
+                  href="/services"
                   className="group px-7 py-3.5 rounded-full border border-nexera-cyan/50 text-nexera-cyan font-semibold text-sm tracking-wide hover:bg-nexera-cyan/10 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink-space flex items-center gap-2"
                 >
-                  Learn more
+                  View services
                 </Link>
               </motion.div>
             </motion.div>
+
+            {/* Trust line */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-6 font-body text-xs text-cool-white/30 tracking-wide"
+            >
+              Serving Ankleshwar · Bareilly · Puranpur · Pilibhit · Moradabad
+            </motion.p>
           </div>
         </div>
 
