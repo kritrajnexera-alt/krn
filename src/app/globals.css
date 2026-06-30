@@ -28,38 +28,6 @@ html {
   scroll-behavior: smooth;
 }
 
-.nav-logo {
-  animation: nav-fade-in 0.6s var(--ease-out-soft) both;
-}
-
-.nav-brand {
-  animation: nav-fade-in 0.5s 0.2s var(--ease-out-soft) both;
-}
-
-@keyframes nav-fade-in {
-  from {
-    opacity: 0;
-    transform: translateX(-8px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-}
-
-.nav-underline-active {
-  animation: nav-underline-in 0.3s var(--ease-precise) both;
-}
-
-@keyframes nav-underline-in {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
 body {
   background-color: var(--color-ink-space);
   color: var(--color-cool-white);
