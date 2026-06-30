@@ -76,6 +76,80 @@ body {
   100% { transform: translateX(-50%); }
 }
 
+/* ─── Background Orbs ─── */
+@keyframes orb-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(60px, -80px) scale(1.08); }
+  50% { transform: translate(-40px, 40px) scale(0.95); }
+  75% { transform: translate(80px, 60px) scale(1.03); }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-70px, 50px) scale(0.92); }
+  66% { transform: translate(50px, -60px) scale(1.06); }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(40px, 30px) scale(0.96); }
+  50% { transform: translate(-60px, -70px) scale(1.05); }
+  75% { transform: translate(30px, -20px) scale(0.98); }
+}
+
+@keyframes particle-float {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-100vh) translateX(var(--drift, 30px)); opacity: 0; }
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.orb-violet {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle at 30% 30%, rgba(91, 47, 212, 0.12), transparent 70%);
+  animation: orb-float 45s ease-in-out infinite;
+}
+
+.orb-cyan {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at 70% 70%, rgba(0, 200, 224, 0.08), transparent 70%);
+  animation: orb-float-2 55s ease-in-out infinite;
+}
+
+.orb-accent {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle at 50% 50%, rgba(91, 47, 212, 0.06), transparent 70%);
+  animation: orb-float-3 65s ease-in-out infinite;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--color-cool-white);
+  pointer-events: none;
+  animation: particle-float var(--duration, 20s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb { animation: none; opacity: 0.04; }
+  .particle { display: none; }
+}
+
 .glow-violet {
   box-shadow: 0 0 30px color-mix(in srgb, var(--color-nexera-violet) 15%, transparent),
               0 0 60px color-mix(in srgb, var(--color-nexera-violet) 5%, transparent);

@@ -11,6 +11,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import AmbientBackground from "@/components/AmbientBackground";
 
 export const metadata: Metadata = {
   title: "KritRaj Nexera | AI-Powered Web Development & Automation",
@@ -34,6 +35,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
+        <AmbientBackground />
         <Navbar />
         <main id="main-content" className="flex-1">
           {children}
