@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-30T07:30:00Z",
+  "title": "Design System: KritRaj Nexera",
+  "extensions": {
+    "colorMeta": {
+      "ink-space": { "role": "neutral", "displayName": "Ink Space", "canonical": "oklch(0.08 0.02 260)", "tonalRamp": ["#030512", "#07091A", "#0B0E24", "#0F1228", "#15193D", "#1E2358", "#2A3070", "#3B4288"] },
+      "card-bg": { "role": "neutral", "displayName": "Card BG", "canonical": "oklch(0.12 0.025 265)", "tonalRamp": ["#07091A", "#0F1228", "#15193D", "#1B1F4A", "#222758", "#2A3070", "#333A82", "#3D4594"] },
+      "nexera-violet": { "role": "primary", "displayName": "Nexera Violet", "canonical": "oklch(0.45 0.25 290)", "tonalRamp": ["#1A0E3D", "#2B1870", "#3D2199", "#5B2FD4", "#7A4DE0", "#9A70EB", "#BA94F2", "#DBB8F8"] },
+      "nexera-cyan": { "role": "secondary", "displayName": "Nexera Cyan", "canonical": "oklch(0.75 0.15 200)", "tonalRamp": ["#00303A", "#00556A", "#007A99", "#00C8E0", "#20D8F0", "#50E3F5", "#80EDF8", "#B0F4FB"] },
+      "cool-white": { "role": "neutral", "displayName": "Cool White", "canonical": "oklch(0.95 0.01 270)", "tonalRamp": ["#A0A8C0", "#B0B8D0", "#C0C8DF", "#D0D8EF", "#E0E8F8", "#E8EFFB", "#F0F4FF", "#F8FAFF"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Section headings only. Max clamp 96px." },
+      "body": { "displayName": "Body", "purpose": "Paragraph text. Max line length 65ch." },
+      "label": { "displayName": "Label/Mono", "purpose": "Metadata, pricing, service numbers. Space Mono + uppercase + wide tracking." }
+    },
+    "shadows": [
+      { "name": "hover-glow", "value": "0 0 40px rgba(0, 200, 224, 0.08)", "purpose": "Subtle cyan glow on card hover." },
+      { "name": "violet-glow", "value": "0 0 30px rgba(91, 47, 212, 0.3)", "purpose": "Violet glow on primary button hover." },
+      { "name": "violet-glow-cta", "value": "0 0 40px rgba(91, 47, 212, 0.4)", "purpose": "Stronger violet glow for CTA button hover." }
+    ],
+    "motion": [
+      { "name": "ease-reveal", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Default easing for scroll reveals and entrances." },
+      { "name": "duration-reveal", "value": "0.7s", "purpose": "Scroll reveal animation duration." },
+      { "name": "duration-state", "value": "0.3s", "purpose": "State transition duration (hover, focus)." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid violet pill button for primary CTAs.",
+      "html": "<button class=\"ds-btn-primary\">See our work →</button>",
+      "css": ".ds-btn-primary { background: #5B2FD4; color: #F0F4FF; padding: 14px 28px; border-radius: 9999px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.025em; border: none; cursor: pointer; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-primary:hover { background: rgba(91, 47, 212, 0.8); box-shadow: 0 0 30px rgba(91, 47, 212, 0.3); } .ds-btn-primary:focus-visible { outline: 2px solid #00C8E0; outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Outlined button for secondary actions.",
+      "html": "<button class=\"ds-btn-ghost\">Book a free call</button>",
+      "css": ".ds-btn-ghost { background: transparent; color: #00C8E0; padding: 14px 28px; border-radius: 9999px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.025em; border: 1px solid rgba(0, 200, 224, 0.5); cursor: pointer; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-ghost:hover { background: rgba(0, 200, 224, 0.1); } .ds-btn-ghost:focus-visible { outline: 2px solid #00C8E0; outline-offset: 2px; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card-default",
+      "description": "Dark card with violet border, hover shifts to cyan.",
+      "html": "<div class=\"ds-card\"><span class=\"ds-card-index\">01</span><h3 class=\"ds-card-title\">Website Builds</h3><p class=\"ds-card-desc\">Premium Next.js 16 + Tailwind v4. Fully responsive, SEO-optimised, 5-day turnaround.</p><span class=\"ds-card-price\">Starting ₹2,999</span></div>",
+      "css": ".ds-card { background: #0F1228; border-radius: 16px; border: 1px solid rgba(91, 47, 212, 0.15); padding: 32px; min-height: 200px; display: flex; flex-direction: column; justify-content: space-between; transition: border-color 0.5s, box-shadow 0.5s; } .ds-card:hover { border-color: rgba(0, 200, 224, 0.3); box-shadow: 0 0 40px rgba(0, 200, 224, 0.08); } .ds-card-index { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.05em; color: rgba(91, 47, 212, 0.4); } .ds-card-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; color: #F0F4FF; margin-top: 20px; transition: color 0.3s; } .ds-card:hover .ds-card-title { color: #00C8E0; } .ds-card-desc { font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(240, 244, 255, 0.5); margin-top: 12px; line-height: 1.7; } .ds-card-price { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.05em; color: rgba(91, 47, 212, 0.7); margin-top: 24px; display: inline-block; }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Dark nav with cyan active underline.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-active\" href=\"/\">Home</a><a class=\"ds-nav-link\" href=\"/services\">Services</a><a class=\"ds-nav-link\" href=\"/about\">About</a><a class=\"ds-nav-link\" href=\"/contact\">Contact</a><button class=\"ds-btn-primary\" style=\"padding: 10px 20px; font-size: 13px;\">Get Started</button></nav>",
+      "css": ".ds-nav { background: rgba(13, 16, 36, 0.95); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(91, 47, 212, 0.1); padding: 0 24px; height: 64px; display: flex; align-items: center; gap: 32px; } .ds-nav-link { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.025em; color: rgba(240, 244, 255, 0.6); text-decoration: none; transition: color 0.3s; position: relative; } .ds-nav-link:hover { color: rgba(240, 244, 255, 0.9); } .ds-nav-link.ds-active { color: #00C8E0; } .ds-nav-link.ds-active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: #00C8E0; border-radius: 2px; } .ds-nav-link:focus-visible { outline: 2px solid #00C8E0; outline-offset: 2px; border-radius: 4px; }"
+    },
+    {
+      "name": "Tag / Badge",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Coming Soon badge with muted styling.",
+      "html": "<span class=\"ds-tag\">Coming Soon</span>",
+      "css": ".ds-tag { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(240, 244, 255, 0.4); padding: 4px 10px; border-radius: 9999px; border: 1px solid rgba(240, 244, 255, 0.1); background: rgba(240, 244, 255, 0.05); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Digital Space Agency",
+    "overview": "A dark-spatial design system built for an AI-powered development agency. The canvas is not black but a tinted deep navy (#07091A) that creates atmosphere without crushing detail. Violet and cyan are used as surgical signals — one accent moment per viewport, never decoration. The typography pairing (Space Grotesk display × Inter body × Space Mono labels) creates an engineering-led editorial feel: precise, technical, but warm enough for local Indian business owners to trust.",
+    "keyCharacteristics": [
+      "Dark-spatial depth (ink-space navy, not pure black)",
+      "Restrained accent (violet + cyan, one moment per viewport)",
+      "Engineering-led aesthetic (mono labels, terminal-like data displays)",
+      "Local-first narrative (INR pricing, city names, WhatsApp as primary channel)"
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Violet or cyan appears on ≤10% of any given viewport. Their rarity is what makes them signals.", "section": "colors" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest. Depth appears only through interaction state changes.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use ink-space (#07091A) not pure black for the body background.",
+      "Do keep one accent moment per viewport — violet OR cyan, not both competing.",
+      "Do use Space Grotesk for headings, Inter for body, Space Mono for labels consistently.",
+      "Do use prefers-reduced-motion to disable all animations for vestibular safety.",
+      "Do ensure body text meets WCAG AA (4.5:1) contrast against dark backgrounds."
+    ],
+    "donts": [
+      "Don't use numbered section markers (01/02/03) as decorative scaffolding above every section.",
+      "Don't put a tiny uppercase tracked eyebrow above every section heading.",
+      "Don't use gradient text (background-clip: text) for anything — solid colors only.",
+      "Don't use identical card grids across multiple sections.",
+      "Don't use pure black backgrounds (#000). Use ink-space (#07091A).",
+      "Don't use bounce, elastic, or spring animations.",
+      "Don't use glassmorphism (frosted glass blur) as a default treatment.",
+      "Don't use stock illustrations, rocket icons, or laptop imagery.",
+      "Don't create dead affordances — 'View project' must link somewhere or not appear.",
+      "Don't overflow text on mobile; test heading clamp at all breakpoints."
+    ]
+  }
+}
