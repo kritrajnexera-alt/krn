@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import ScrollReveal from "./ScrollReveal";
 
 function SiNextdotjs({ size }: { size: number }) {
@@ -54,6 +54,67 @@ const stackCategories = [
   },
 ];
 
+function StackCategory({ category, index }: { category: typeof stackCategories[0]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "-80px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref}>
+      <div
+        className={`transition-all duration-500 ease-out-soft ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+        }`}
+        style={{ transitionDelay: `${index * 0.12}s` }}
+      >
+        <span className="font-mono text-[11px] tracking-widest text-cool-white/40 uppercase block mb-6">
+          {category.name}
+        </span>
+        <div className="space-y-4">
+          {category.tools.map((tool, ti) => (
+            <div
+              key={tool.name}
+              className={`transition-all duration-400 ease-out-soft ${
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+              }`}
+              style={{ transitionDelay: `${index * 0.12 + ti * 0.06}s` }}
+            >
+              <div className="group flex items-center gap-3 p-3 -mx-3 rounded-xl hover:bg-card-bg/60 hover:shadow-[0_0_30px_rgba(91,47,212,0.08)] hover:scale-[1.03] transition-all duration-300 ease-out-soft cursor-default">
+                <span className="w-10 h-10 rounded-lg bg-surface-mid border border-nexera-violet/10 flex items-center justify-center text-cool-white/60 group-hover:text-nexera-cyan transition-colors duration-300 flex-shrink-0">
+                  {tool.icon}
+                </span>
+                <div className="min-w-0">
+                  <span className="font-display font-semibold text-sm text-cool-white group-hover:text-nexera-cyan transition-colors duration-300 block leading-tight">
+                    {tool.name}
+                  </span>
+                  <span className="font-body text-[12px] text-cool-white/40 leading-tight">
+                    {tool.label}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function StackSection() {
   return (
     <section aria-labelledby="stack-heading" className="relative py-24 md:py-32 overflow-hidden">
@@ -70,41 +131,7 @@ export default function StackSection() {
 
         <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 lg:gap-14">
           {stackCategories.map((category, ci) => (
-            <motion.div
-              key={category.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: ci * 0.12, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <span className="font-mono text-[11px] tracking-widest text-cool-white/40 uppercase block mb-6">
-                {category.name}
-              </span>
-              <div className="space-y-4">
-                {category.tools.map((tool, ti) => (
-                  <motion.div
-                    key={tool.name}
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.4, delay: ci * 0.12 + ti * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                    className="group flex items-center gap-3 p-3 -mx-3 rounded-xl hover:bg-card-bg/60 hover:shadow-[0_0_30px_rgba(91,47,212,0.08)] hover:scale-[1.03] transition-all duration-300 ease-out-soft cursor-default"
-                  >
-                    <span className="w-10 h-10 rounded-lg bg-surface-mid border border-nexera-violet/10 flex items-center justify-center text-cool-white/60 group-hover:text-nexera-cyan transition-colors duration-300 flex-shrink-0">
-                      {tool.icon}
-                    </span>
-                    <div className="min-w-0">
-                      <span className="font-display font-semibold text-sm text-cool-white group-hover:text-nexera-cyan transition-colors duration-300 block leading-tight">
-                        {tool.name}
-                      </span>
-                      <span className="font-body text-[12px] text-cool-white/40 leading-tight">
-                        {tool.label}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+            <StackCategory key={category.name} category={category} index={ci} />
           ))}
         </div>
       </div>

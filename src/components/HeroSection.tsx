@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 
 const headline = ["BUILD", "THE", "NEXT.", "NOW."];
@@ -12,24 +9,19 @@ function WordReveal({ words }: { words: string[] }) {
         {words.map((word, i) => {
           const isLast = i === words.length - 1;
           return (
-            <motion.span
+            <span
               key={i}
-              initial={{ opacity: 0, y: 60, filter: "blur(12px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ delay: i * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className={`inline-block mr-[0.15em] ${isLast ? "text-nexera-cyan" : ""}`}
+              className={`inline-block mr-[0.15em] word-reveal ${isLast ? "text-nexera-cyan" : ""}`}
+              style={{ animationDelay: `${i * 0.12}s` }}
             >
               {word}
               {isLast && (
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="inline-block ml-2 w-2 h-2 rounded-full bg-nexera-cyan align-middle"
+                <span
+                  className="inline-block ml-2 w-2 h-2 rounded-full bg-nexera-cyan align-middle pulse-dot"
                   aria-hidden="true"
                 />
               )}
-            </motion.span>
+            </span>
           );
         })}
       </span>
@@ -90,22 +82,14 @@ export default function HeroSection() {
           <div id="hero-heading">
             <WordReveal words={headline} />
           </div>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 text-lg md:text-xl text-cool-white/60 font-body max-w-2xl leading-relaxed text-pretty"
+          <p
+            className="mt-6 text-lg md:text-xl text-cool-white/60 font-body max-w-2xl leading-relaxed text-pretty hero-subtitle"
           >
             Premium websites, smart automation &amp; AI-powered tools — 
             built for Indian businesses ready to grow beyond templates.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 flex flex-col sm:flex-row gap-4 items-center"
-          >
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 items-center hero-buttons">
             <Link
               href="/contact"
               className="px-7 py-3.5 rounded-full bg-nexera-violet text-cool-white font-semibold text-sm tracking-wide hover:bg-nexera-violet/80 hover:scale-[1.03] active:scale-[0.97] transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nexera-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink-space hover:shadow-[0_0_30px_rgba(91,47,212,0.3)] flex items-center gap-2"
@@ -119,7 +103,7 @@ export default function HeroSection() {
             >
               View services
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
 

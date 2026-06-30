@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 
 function CountUp({ from, to, inView }: { from: number; to: number; inView: boolean }) {
@@ -37,38 +36,45 @@ function CountUp({ from, to, inView }: { from: number; to: number; inView: boole
 
 function AnimatedCount({ value, suffix = "" }: { value: string; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "-80px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const numValue = parseInt(value.replace(/[^0-9]/g, ""));
   const isNumeric = !isNaN(numValue);
 
   return (
     <span ref={ref} className="inline-block">
-      {isNumeric ? (
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          className="inline-block"
-        >
-          <CountUp from={0} to={numValue} inView={inView} />
-        </motion.span>
-      ) : (
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {value}
-        </motion.span>
-      )}
+      <span
+        className={`inline-block transition-all duration-700 ease-out-soft ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+        }`}
+      >
+        {isNumeric ? <CountUp from={0} to={numValue} inView={inView} /> : value}
+      </span>
       {suffix && (
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.6, duration: 0.4 }}
+        <span
+          className={`inline-block transition-all duration-400 ease-out-soft ${
+            inView ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ transitionDelay: "0.6s" }}
         >
           {suffix}
-        </motion.span>
+        </span>
       )}
     </span>
   );

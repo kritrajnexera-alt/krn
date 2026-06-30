@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
 
@@ -49,10 +46,8 @@ export default function ServicesSection() {
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((service, i) => (
             <ScrollReveal key={service.index} delay={i * 0.1}>
-              <motion.div
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                className={`group relative p-8 rounded-2xl min-h-[200px] flex flex-col justify-between transition-all duration-500 hover:shadow-[0_0_40px_rgba(0,200,224,0.08)] ${
+              <div
+                className={`group relative p-8 rounded-2xl min-h-[200px] flex flex-col justify-between transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_40px_rgba(0,200,224,0.08)] ${
                   service.badge === "Coming Soon"
                     ? "bg-card-bg border border-nexera-violet/10 opacity-70 hover:opacity-100 hover:border-nexera-cyan/30"
                     : i % 2 === 0
@@ -79,7 +74,7 @@ export default function ServicesSection() {
                 <span className="inline-block mt-6 font-mono text-[11px] tracking-wider text-cool-white/50">
                   {service.price}
                 </span>
-              </motion.div>
+              </div>
             </ScrollReveal>
           ))}
         </div>
