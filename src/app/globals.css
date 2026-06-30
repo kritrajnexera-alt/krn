@@ -28,6 +28,15 @@ html {
   scroll-behavior: smooth;
 }
 
+.nav-underline-in {
+  animation: nav-underline-in 0.25s var(--ease-precise) both;
+}
+
+@keyframes nav-underline-in {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
 body {
   background-color: var(--color-ink-space);
   color: var(--color-cool-white);

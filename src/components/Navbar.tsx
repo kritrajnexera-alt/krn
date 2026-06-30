@@ -76,10 +76,7 @@ export default function Navbar() {
                 >
                   {link.label}
                   {isActive && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute -bottom-1 left-0 right-0 h-[2px] bg-nexera-cyan rounded-full"
-                    />
+                    <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-nexera-cyan rounded-full nav-underline-in" />
                   )}
                 </Link>
               );
