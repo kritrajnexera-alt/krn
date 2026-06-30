@@ -141,6 +141,29 @@ export default function Contact() {
                       <ValidationError field="phone" errors={state.errors} />
                     </div>
 
+                    <div>
+                      <label htmlFor="service" className="font-mono text-[11px] tracking-wider text-cool-white/40 block mb-1.5">Service / Project Type *</label>
+                      <div className="relative">
+                        <select
+                          id="service"
+                          name="service"
+                          required
+                          className="w-full px-4 py-3 rounded-xl bg-surface-mid border border-nexera-violet/15 text-cool-white text-sm appearance-none focus:outline-none focus:border-nexera-cyan/60 focus:shadow-[0_0_16px_rgba(0,200,224,0.06)] hover:border-nexera-violet/30 transition-all duration-300 cursor-pointer"
+                        >
+                          <option value="" disabled>Select a service</option>
+                          <option value="Website Development">Website Development</option>
+                          <option value="Workflow Automation">Workflow Automation</option>
+                          <option value="AI Chatbot">AI Chatbot</option>
+                          <option value="SaaS Development">SaaS Development</option>
+                          <option value="Other / Not Sure">Other / Not Sure</option>
+                        </select>
+                        <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-cool-white/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                      </div>
+                      <ValidationError field="service" errors={state.errors} />
+                    </div>
+
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="date" className="font-mono text-[11px] tracking-wider text-cool-white/40 block mb-1.5">Preferred Date *</label>
